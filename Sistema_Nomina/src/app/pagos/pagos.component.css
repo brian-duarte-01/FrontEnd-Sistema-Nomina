@@ -1,0 +1,39 @@
+.titulo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+}
+.ti{
+    font-size: 50px;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+}
+.botones{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.tabla{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    width: 100%;
+}
+.td,.td1{
+    text-align: center;
+}
+
+@media print{
+    .botones{
+        display: none;
+    }
+    .td1{
+        display: none;
+    }
+    .td{
+        color: black;
+    }
+
+}
