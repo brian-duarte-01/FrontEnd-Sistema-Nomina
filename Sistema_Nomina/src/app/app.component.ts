@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { WebServiceEstadoService } from './Services/ServiceEstado/web-service-estado.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Sistema_Nomina';
+
+  
 }
