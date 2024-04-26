@@ -7,16 +7,25 @@ import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import {  FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ComponentEstadoComponent } from './Controllers/ComponentEstado/component-estado/component-estado.component';
 import { ComponentIndexComponent } from './Controllers/Component-Index/component-index/component-index.component';
+import { ComponentEmpresaComponent } from './Controllers/component-empresa/component-empresa.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { ComponentEmpleadoComponent } from './Controllers/component-empleado/component-empleado.component';
+import { ComponentTipoPagoComponent } from './Controllers/component-tipo-pago/component-tipo-pago.component';
+import { ComponentEstadoComponent } from './Controllers/component-estado/component-estado.component';
+import { ComponentPagoComponent } from './Controllers/component-pago/component-pago.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ComponentEstadoComponent,
     ComponentIndexComponent,
+    ComponentEmpresaComponent,
+    ComponentEmpleadoComponent,
+    ComponentTipoPagoComponent,
+    ComponentEstadoComponent,
+    ComponentPagoComponent
     
   ],
   imports: [
@@ -25,7 +34,8 @@ import { ComponentIndexComponent } from './Controllers/Component-Index/component
     RouterModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
 
   ],
   providers: [],

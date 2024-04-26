@@ -8,16 +8,22 @@ import { WebServiceEstadoService } from 'src/app/Services/ServiceEstado/web-serv
 })
 export class ComponentEstadoComponent {
 
-  constructor(private RestService: WebServiceEstadoService)
+  public listEstado: any = [];
+
+ p: number = 1;
+
+  public constructor(public serviceEstado: WebServiceEstadoService){}
+
+  public ngOnInit()
   {
-
+    this.getEstado();
   }
 
-  ngOnInit(): void 
+  public getEstado()
   {
-
+    this.serviceEstado.get('https://localhost:44317/api/Estado').subscribe(respuesta =>{
+      this.listEstado = respuesta;
+    });
   }
 
-  }
-  
-
+}
