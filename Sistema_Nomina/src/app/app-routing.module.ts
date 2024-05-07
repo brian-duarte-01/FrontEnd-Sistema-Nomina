@@ -6,6 +6,8 @@ import { ComponentEmpleadoComponent } from './Controllers/component-empleado/com
 import { ComponentTipoPagoComponent } from './Controllers/component-tipo-pago/component-tipo-pago.component';
 import { ComponentEstadoComponent } from './Controllers/component-estado/component-estado.component';
 import { ComponentPagoComponent } from './Controllers/component-pago/component-pago.component';
+import { ComponentIndemizacionComponent } from './Controllers/component-indemizacion/component-indemizacion.component';
+import { ComponentAguinaldoComponent } from './Controllers/component-aguinaldo/component-aguinaldo.component';
 
 
 const routes: Routes = [
@@ -15,7 +17,9 @@ const routes: Routes = [
   {path:'empleado', component: ComponentEmpleadoComponent},
   {path:'tipo-pago', component: ComponentTipoPagoComponent},
   {path:'estado', component: ComponentEstadoComponent},
-  {path:'pago', component: ComponentPagoComponent}
+  {path:'pago', component: ComponentPagoComponent},
+  {path:'indemizacion', component: ComponentIndemizacionComponent},
+  {path:'aguinaldo', component:ComponentAguinaldoComponent}
 ];
 
 @NgModule({

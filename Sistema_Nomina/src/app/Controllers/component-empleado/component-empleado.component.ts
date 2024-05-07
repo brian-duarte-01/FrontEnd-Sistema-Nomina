@@ -12,6 +12,8 @@ export class ComponentEmpleadoComponent {
 
   p: number = 1;
 
+  public BuscarEmpleado: string ="";
+
 
   constructor(private webEmpleado: WebServiceEmpleadoService){}
 
@@ -22,7 +24,7 @@ export class ComponentEmpleadoComponent {
 
   public getEmpleado()
   {
-      this.webEmpleado.get('https://localhost:44317/api/Empleado').subscribe(respuesta=>{
+      this.webEmpleado.get('https://localhost:44317/api/Empleado/Buscar?nit='+this.BuscarEmpleado+'').subscribe(respuesta=>{
         this.listEmpleado = respuesta;
       });
   }

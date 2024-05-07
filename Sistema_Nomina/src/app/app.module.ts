@@ -14,6 +14,8 @@ import { ComponentEmpleadoComponent } from './Controllers/component-empleado/com
 import { ComponentTipoPagoComponent } from './Controllers/component-tipo-pago/component-tipo-pago.component';
 import { ComponentEstadoComponent } from './Controllers/component-estado/component-estado.component';
 import { ComponentPagoComponent } from './Controllers/component-pago/component-pago.component';
+import { ComponentIndemizacionComponent } from './Controllers/component-indemizacion/component-indemizacion.component';
+import { ComponentAguinaldoComponent } from './Controllers/component-aguinaldo/component-aguinaldo.component';
 
 
 
@@ -25,7 +27,9 @@ import { ComponentPagoComponent } from './Controllers/component-pago/component-p
     ComponentEmpleadoComponent,
     ComponentTipoPagoComponent,
     ComponentEstadoComponent,
-    ComponentPagoComponent
+    ComponentPagoComponent,
+    ComponentIndemizacionComponent,
+    ComponentAguinaldoComponent
     
   ],
   imports: [
@@ -35,7 +39,8 @@ import { ComponentPagoComponent } from './Controllers/component-pago/component-p
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ReactiveFormsModule
 
   ],
   providers: [],
