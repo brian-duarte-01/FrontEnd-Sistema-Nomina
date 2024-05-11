@@ -12,4 +12,9 @@ export class WebServiceEstadoService {
   {
     return this.http.get(url);
   }
+
+  public post(url: string, body: any)
+  {
+    return this.http.post(url,body);
+  }
 }

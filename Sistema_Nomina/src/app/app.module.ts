@@ -16,6 +16,8 @@ import { ComponentEstadoComponent } from './Controllers/component-estado/compone
 import { ComponentPagoComponent } from './Controllers/component-pago/component-pago.component';
 import { ComponentIndemizacionComponent } from './Controllers/component-indemizacion/component-indemizacion.component';
 import { ComponentAguinaldoComponent } from './Controllers/component-aguinaldo/component-aguinaldo.component';
+import { ComponentBono14Component } from './Controllers/component-bono14/component-bono14.component';
+import { ComponentVacacionesComponent } from './Controllers/component-vacaciones/component-vacaciones.component';
 
 
 
@@ -29,7 +31,9 @@ import { ComponentAguinaldoComponent } from './Controllers/component-aguinaldo/c
     ComponentEstadoComponent,
     ComponentPagoComponent,
     ComponentIndemizacionComponent,
-    ComponentAguinaldoComponent
+    ComponentAguinaldoComponent,
+    ComponentBono14Component,
+    ComponentVacacionesComponent
     
   ],
   imports: [

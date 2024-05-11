@@ -21,6 +21,7 @@ height: 20%;
 width: 100%;
 background: #666666;
 border-radius: 5px;
+box-shadow: 5px 5px 20px rgb(0, 0, 0.9);
 }
 .ti
 {
@@ -75,6 +76,7 @@ align-items: center;
 height: 70%;
 width: 100%;
 background: white;
+box-shadow: 5px 5px 20px rgb(0, 0, 0.9);
 }
 .caja-table
 {

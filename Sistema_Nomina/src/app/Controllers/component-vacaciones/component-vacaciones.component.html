@@ -4,40 +4,25 @@
 
       <!--Seccion de titulo-->
         <div class="botones">
-            <h1 class="ti">Estado</h1>
+            <h1 class="ti">Vacaciones</h1>
 
             <div class="btn-group" role="group" aria-label="Basic example">
                 <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-toggle-on" viewBox="0 0 16 16">
-                    <path d="M5 3a5 5 0 0 0 0 10h6a5 5 0 0 0 0-10zm6 9a4 4 0 1 1 0-8 4 4 0 0 1 0 8"/>
-                  </svg> Nuevo Estado
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-moon-fill" viewBox="0 0 16 16">
+                    <path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278"/>
+                  </svg> Nueva Vacaciones
             </button>
             <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Estado</h1>
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Nueva Vacaciones</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                
-
-                <form class="row g-3" [formGroup]="form" (ngSubmit)="postEstado()">
-                    <div class="col-md-4">
-                      <label for="validationDefaultUsername" class="form-label">Estado</label>
-                      <div class="input-group">
-                        <span class="input-group-text" id="inputGroupPrepend2">@</span>
-                        <input type="text" class="form-control" formControlName="status" id="validationDefaultUsername" placeholder="Digite el estado" aria-describedby="inputGroupPrepend2" required>
-                      </div>
-                    </div>
-
-                    <div class="col-12">
-                      <button class="btn btn-primary">Submit form</button>
-                    </div>
-                  </form>
-
+              ...
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -59,8 +44,14 @@
         <!--seccion de filter-->
         <div class="filter">
                 <div class="filter1">
-                    <p class="titulo-filter">Filter</p>
-                    <hr>
+                    <div class="input-group">
+                        <input type="text" class="form-control" [(ngModel)]="buscarVacaciones" placeholder="Buscar Empleado" aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <button class="btn btn-warning" type="button" id="button-addon2" (click)="getVacaciones()">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                              </svg>
+                        </button>
+                      </div>
                 </div>
         </div>
         <!--seccion de filter-->
@@ -72,13 +63,25 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
+                            <th>NOMBRE</th>
+                            <th>MESES</th>
+                            <th>DIAS</th>
+                            <th>SALARIO</th>
+                            <th>TOTAL</th>
+                            <th>TIPO DE PAGO</th>
                             <th>ESTADO</th>
                             <th class="th1">BOTONES</th>
                         </tr>
                     </thead>
-                    <tbody *ngFor="let lista of listEstado | paginate: { itemsPerPage: 5, currentPage: p }">
+                    <tbody *ngFor="let lista of listVacaciones | paginate: { itemsPerPage: 4, currentPage: p }">
                         <tr>
-                            <td>{{lista?.status}}</td>
+                            <td>{{lista?.empleado}}</td>
+                            <td>{{lista?.meses}}</td>
+                            <td>{{lista?.dias}}</td>
+                            <td>{{lista?.sueldo}}</td>
+                            <td>{{lista?.totalVacaciones}}</td>
+                            <td>{{lista?.tipoPago}}</td>
+                            <td>{{lista?.estado}}</td>
                             <td class="td1">
                                 <div class="btn-group" role="group" aria-label="Basic example">
                                     <a href="#" class="btn btn-danger">

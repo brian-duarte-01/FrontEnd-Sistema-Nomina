@@ -8,6 +8,8 @@ import { ComponentEstadoComponent } from './Controllers/component-estado/compone
 import { ComponentPagoComponent } from './Controllers/component-pago/component-pago.component';
 import { ComponentIndemizacionComponent } from './Controllers/component-indemizacion/component-indemizacion.component';
 import { ComponentAguinaldoComponent } from './Controllers/component-aguinaldo/component-aguinaldo.component';
+import { ComponentBono14Component } from './Controllers/component-bono14/component-bono14.component';
+import { ComponentVacacionesComponent } from './Controllers/component-vacaciones/component-vacaciones.component';
 
 
 const routes: Routes = [
@@ -19,7 +21,9 @@ const routes: Routes = [
   {path:'estado', component: ComponentEstadoComponent},
   {path:'pago', component: ComponentPagoComponent},
   {path:'indemizacion', component: ComponentIndemizacionComponent},
-  {path:'aguinaldo', component:ComponentAguinaldoComponent}
+  {path:'aguinaldo', component:ComponentAguinaldoComponent},
+  {path:'bono14', component: ComponentBono14Component},
+  {path:'vacaciones',component:ComponentVacacionesComponent}
 ];
 
 @NgModule({
