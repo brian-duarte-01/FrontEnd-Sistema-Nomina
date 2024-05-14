@@ -22,7 +22,25 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              ...
+                
+                <form class="row g-3" [formGroup]="form" (ngSubmit)="postTipoPago()">
+
+                    <div class="col-md-4">
+                      <label for="validationDefaultUsername" class="form-label">Tipo Pago</label>
+                      <div class="input-group">
+                        <span class="input-group-text" id="inputGroupPrepend2">@</span>
+                        <input type="text" class="form-control" formControlName="tipo_pago" id="validationDefaultUsername" placeholder="Digite el tipo de pago" aria-describedby="inputGroupPrepend2" required>
+                      </div>
+                    </div>
+
+                    
+                    <div class="col-12">
+                      <button class="btn btn-primary" type="submit">Submit form</button>
+                    </div>
+                  </form>
+
+
+
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

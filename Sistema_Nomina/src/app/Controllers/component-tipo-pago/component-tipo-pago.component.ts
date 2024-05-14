@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { WebServiceTipoPagoService } from 'src/app/Services/ServiceTipoPago/web-service-tipo-pago.service';
 
 @Component({
@@ -12,7 +13,10 @@ export class ComponentTipoPagoComponent {
 
   p: number = 1;
 
-  constructor(private serviceTipoPago: WebServiceTipoPagoService){}
+  constructor(
+    private serviceTipoPago: WebServiceTipoPagoService,
+    private fb: FormBuilder
+  ){}
 
   public ngOnInit()
   {
@@ -26,6 +30,22 @@ export class ComponentTipoPagoComponent {
           this.listTipoPago = respuesta;
         }
       );
+  }
+
+
+  form: FormGroup = this.fb.group({
+    tipo_pago: ['']
+  });
+
+  public postTipoPago()
+  {
+    this.serviceTipoPago.post('https://localhost:44317/api/TipoPago',{
+      tipo_pago: this.form.value.tipo_pago
+    }).subscribe(respuesta=>{
+
+    });
+    this.form.reset();
+    confirm('Se envio correctamente!!');
   }
 
 }

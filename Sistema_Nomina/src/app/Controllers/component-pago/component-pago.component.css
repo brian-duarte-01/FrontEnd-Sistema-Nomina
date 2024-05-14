@@ -103,6 +103,11 @@ th, td, .td1, .th1
 
 @media print
 {
+    *{
+        padding: 0;
+        margin: 0;
+        border: 0;
+    }
     .ti
     {
         color: black;
