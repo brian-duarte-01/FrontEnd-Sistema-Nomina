@@ -76,4 +76,12 @@ public postVacaciones()
   confirm('Se envio correctamente!!');
 }
 
+public deleteEmpresa(id:number)
+{
+ this.apiService.delete('https://localhost:44317/api/Vacaciones/',id).subscribe(()=>{
+
+ });
+}
+
+
 }

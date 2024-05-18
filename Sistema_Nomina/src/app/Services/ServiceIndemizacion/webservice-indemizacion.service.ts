@@ -17,4 +17,9 @@ export class WebserviceIndemizacionService {
   {
     return this.http.post(url, body);
   }
+
+  public delete(url:string, id:number)
+  {
+    return this.http.delete(url+id);
+  }
 }

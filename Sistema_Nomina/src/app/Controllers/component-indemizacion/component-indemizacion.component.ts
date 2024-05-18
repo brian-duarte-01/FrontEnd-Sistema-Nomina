@@ -80,4 +80,13 @@ export class ComponentIndemizacionComponent {
 
 
   
+ public deleteEmpresa(id:number)
+ {
+  this.serviceIndemizacion.delete('https://localhost:44317/api/Indemizacion/',id).subscribe(()=>{
+
+  });
+ }
+
+
+  
 }

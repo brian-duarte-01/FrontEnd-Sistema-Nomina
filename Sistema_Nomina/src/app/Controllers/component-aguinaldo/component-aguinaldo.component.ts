@@ -79,4 +79,12 @@ export class ComponentAguinaldoComponent {
     confirm('Se envio correctamente!!');
   }
 
+  public deleteEmpresa(id:number)
+  {
+   this.apiAguinaldo.delete('https://localhost:44317/api/Aguinaldo/',id).subscribe(()=>{
+
+   });
+  }
+
+
 }

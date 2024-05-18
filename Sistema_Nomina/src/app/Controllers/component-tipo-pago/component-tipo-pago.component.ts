@@ -48,4 +48,11 @@ export class ComponentTipoPagoComponent {
     confirm('Se envio correctamente!!');
   }
 
+  public deleteEmpresa(id:number)
+  {
+   this.serviceTipoPago.delete('https://localhost:44317/api/TipoPago/',id).subscribe(()=>{
+
+   });
+  }
+
 }

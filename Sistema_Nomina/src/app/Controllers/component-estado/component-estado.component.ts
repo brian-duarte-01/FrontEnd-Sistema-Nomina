@@ -47,4 +47,13 @@ export class ComponentEstadoComponent {
     confirm('Se envio correctamente!!');
   }
 
+
+  public deleteEmpresa(id:number)
+  {
+   this.serviceEstado.delete('https://localhost:44317/api/Estado/',id).subscribe(()=>{
+
+   });
+  }
+
+
 }

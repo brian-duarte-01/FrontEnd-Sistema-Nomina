@@ -81,4 +81,13 @@ export class ComponentPagoComponent {
     confirm('Se envio correctamente!!');
   }
 
+
+  public deleteEmpresa(id:number)
+  {
+   this.servicePago.delete('https://localhost:44317/api/Pago/',id).subscribe(()=>{
+
+   });
+  }
+
+
 }

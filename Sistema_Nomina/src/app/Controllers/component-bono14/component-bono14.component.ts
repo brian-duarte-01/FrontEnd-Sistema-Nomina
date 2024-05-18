@@ -80,5 +80,12 @@ export class ComponentBono14Component {
   }
 
 
+ public deleteEmpresa(id:number)
+  {
+   this.apiService.delete('https://localhost:44317/api/Bono14/',id).subscribe(()=>{
+
+   });
+  }
+
 
 }
