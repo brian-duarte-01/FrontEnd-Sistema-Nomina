@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { WebServiceEstadoService } from 'src/app/Services/ServiceEstado/web-service-estado.service';
 import { WebServiceTipoPagoService } from 'src/app/Services/ServiceTipoPago/web-service-tipo-pago.service';
 import { WebServiceVacacionesService } from 'src/app/Services/ServiceVacaciones/web-service-vacaciones.service';
@@ -14,11 +14,12 @@ export class ComponentVacacionesComponent {
   public buscarVacaciones: string ="";
   public listTipoPago: any=[];
   public listEstado: any=[];  
+  public obVacaciones: any =[];
   p: number = 1;
 
   constructor(
     private apiService: WebServiceVacacionesService,
-    private fb: FormBuilder,
+    public fb: FormBuilder,
     private apiTipoPago: WebServiceTipoPagoService,
     private apiEstado: WebServiceEstadoService
   ){}
@@ -28,6 +29,7 @@ export class ComponentVacacionesComponent {
     this.getVacaciones();
     this.getTipoPago();
     this.getEstado(); 
+    this.obtenerVacaciones(0);
   }
 
   public getVacaciones()
@@ -82,6 +84,48 @@ public deleteEmpresa(id:number)
 
  });
 }
+
+public obtenerVacaciones(id:number)
+{
+  this.apiService.get('https://localhost:44317/api/Vacaciones/'+id).subscribe(respuesta=>{
+    this.obVacaciones = respuesta;
+  });
+}
+
+editForm: FormGroup = this.fb.group({
+     empleado:[],
+     meses:[],
+     sueldo:[],
+     tipo_pago:[],
+     estado:[]
+});
+
+public putVacaciones(id:number)
+{
+  this.apiService.put('https://localhost:44317/api/Vacaciones/',id,{
+    empleado:this.editForm.value.empleado,
+    meses:this.editForm.value.meses,
+    sueldo:this.editForm.value.sueldo,
+    tipo_pago:this.editForm.value.tipo_pago,
+    estado:this.editForm.value.estado
+  }).subscribe(()=>{
+
+  });
+  confirm('Se edito correctamente!!');
+}
+
+pagarForm: FormGroup = this.fb.group({
+  estado: []
+});
+
+public pagarPago(){
+  this.apiService.pagar('https://localhost:44317/api/Vacaciones',{
+    estado:this.pagarForm.value.estado
+  }).subscribe(respuesta=>{});
+  confirm('Se realizo el pago a todos correctamente!!');
+}
+
+
 
 
 }

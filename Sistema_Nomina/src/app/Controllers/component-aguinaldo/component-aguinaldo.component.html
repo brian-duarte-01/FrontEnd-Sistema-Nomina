@@ -118,6 +118,53 @@
                             <th>TIPO DE PAGO</th>
                             <th>ESTADO</th>
                             <th class="th1">BOTONES</th>
+                            <th class="th1">
+                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-credit-card-fill" viewBox="0 0 16 16">
+                                  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1"/>
+                                </svg> Pagar
+                            </button>
+                            </th>
+
+                            
+
+<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content">
+  <div class="modal-header">
+    <h1 class="modal-title fs-5" id="exampleModalLabel">Pagar a todos</h1>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    
+
+      <form class="row g-3" [formGroup]="pagarForm" (ngSubmit)="pagarPago()">
+
+            <div class="col-md-3">
+              <label for="validationDefault04" class="form-label">Estado</label>
+              <select class="form-select" formControlName="estado" id="validationDefault04" required>
+                <option selected disabled>Elegir una Opción</option>
+                <option  *ngFor="let listar of listEstado" value="{{listar?.status}}">{{listar?.status}}</option>
+              </select>
+            </div>
+
+          <div class="col-12">
+            <button class="btn btn-primary" type="submit">Pagar</button>
+          </div>
+        </form>
+
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+  </div>
+  </div>
+  </div>
+  </div>
+
+
+
+
                         </tr>
                     </thead>
                     <tbody *ngFor="let lista of ListAguinaldo | paginate: { itemsPerPage: 4, currentPage: p }">
@@ -131,12 +178,93 @@
                             <td>{{lista?.estado}}</td>
                             <td class="td1">
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                    <a href="#" class="btn btn-danger">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
-                                          </svg>
-                                    </a>
+                                   
+
+                                  <button type="button" class="btn btn-danger" (click)="obtenerAguinaldo(lista?.idAguinaldo)" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                                      </svg>
+                                  </button>
+                                  <!-- Modal -->
+                                  <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog">
+                                  <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Aguinaldo</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                    
+                                      <form class="row g-3" *ngFor="let ob of obAguinal" [formGroup]="editForm" (ngSubmit)="putAguinaldo(ob?.idAguinaldo)">
+                      
+                                          <div class="col-md-4">
+                                            <label for="validationDefaultUsername" class="form-label">Empleado</label>
+                                            <div class="input-group">
+                                              <span class="input-group-text" id="inputGroupPrepend2">@</span>
+                                              <input type="text" class="form-control" formControlName="empleado" list="empleado" id="validationDefaultUsername" placeholder="{{ob?.empleado}}" aria-describedby="inputGroupPrepend2" required>
+                                              <datalist id="empleado">
+                                                <option value="{{ob?.empleado}}">Click en esta opción {{ob?.empleado}}</option>
+                                              </datalist>
+                                            </div>
+                                          </div>
+                      
+                                          <div class="col-md-4">
+                                              <label for="validationDefaultUsername" class="form-label">Meses</label>
+                                              <div class="input-group">
+                                                <span class="input-group-text" id="inputGroupPrepend2">@</span>
+                                                <input type="text" class="form-control" formControlName="meses" list="meses" id="validationDefaultUsername" placeholder="{{ob?.meses}}" aria-describedby="inputGroupPrepend2" required>
+                                                <datalist id="meses">
+                                                  <option value="{{ob?.meses}}">Click en esta opción {{ob?.meses}}</option>
+                                                </datalist>
+                                              </div>
+                                            </div>
+                                          
+                                            <div class="col-md-4">
+                                              <label for="validationDefaultUsername" class="form-label">Sueldo</label>
+                                              <div class="input-group">
+                                                <span class="input-group-text" id="inputGroupPrepend2">@</span>
+                                                <input type="text" class="form-control" formControlName="salario" list="salario" id="validationDefaultUsername" placeholder="{{ob?.salario}}" aria-describedby="inputGroupPrepend2" required>
+                                                <datalist id="salario">
+                                                  <option value="{{ob?.salario}}">Click en esta opción {{ob?.salario}}</option>
+                                                </datalist>
+                                              </div>
+                                            </div>
+                      
+                                            <div class="col-md-3">
+                                              <label for="validationDefault04" class="form-label">Tipo Pago</label>
+                                              <select class="form-select" formControlName="tipo_pago" id="validationDefault04" required>
+                                                <option disabled>{{ob?.tipoPago}}</option>
+                                                <option  *ngFor="let listar of listTipoPago" value="{{listar?.tipoPago1}}">{{listar?.tipoPago1}}</option>
+                                              </select>
+                                            </div>
+                      
+                                            <div class="col-md-3">
+                                              <label for="validationDefault04" class="form-label">Estado</label>
+                                              <select class="form-select" formControlName="estado" id="validationDefault04" required>
+                                                <option selected disabled>{{ob?.estado}}</option>
+                                                <option  *ngFor="let listar of listEstado" value="{{listar?.status}}">{{listar?.status}}</option>
+                                              </select>
+                                            </div>
+                      
+                                          <div class="col-12">
+                                            <button class="btn btn-primary" type="submit">Submit form</button>
+                                          </div>
+                                        </form>
+                      
+                      
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                  </div>
+                                  </div>
+                                  </div>
+                                  </div>
+
+
+
+
+
 
                                     <button  class="btn btn-warning" (click)="deleteEmpresa(lista?.idAguinaldo)">
                                       <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">

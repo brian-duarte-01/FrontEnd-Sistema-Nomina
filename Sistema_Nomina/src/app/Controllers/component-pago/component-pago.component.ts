@@ -16,6 +16,7 @@ export class ComponentPagoComponent {
   public buscarPago: string ="";
   public listTipoPago: any = [];
   public listEstado: any = [];
+  public obPago: any = [];
 
 
   p: number = 1;
@@ -32,6 +33,7 @@ export class ComponentPagoComponent {
     this.getPago();
     this.getTipoPago(); 
     this.getEstado(); 
+    this.obtenerPago(0);
   }
 
 
@@ -90,4 +92,39 @@ export class ComponentPagoComponent {
   }
 
 
+  public obtenerPago(id:number){
+    this.servicePago.get('https://localhost:44317/api/Pago/'+id).subscribe(respuesta=>{
+      this.obPago = respuesta;
+    });
+  }
+
+  editForm: FormGroup = this.fb.group({
+    empleado: [''],
+    salario:[''],
+    bonificacion:[''],
+    tipo_pago:[''],
+    estado:['']
+  });
+
+  public putPago(id:number){
+    this.servicePago.put('https://localhost:44317/api/Pago/',id,{
+      empleado:this.editForm.value.empleado,
+      salario: this.editForm.value.salario,
+      bonificacion: this.editForm.value.bonificacion,
+      tipo_pago: this.editForm.value.tipo_pago,
+      estado: this.editForm.value.estado
+    }).subscribe(()=>{});
+    confirm('Se edito correctamente!!');
+  } 
+
+  pagarForm: FormGroup = this.fb.group({
+    estado: []
+  });
+
+  public pagarPago(){
+    this.servicePago.pagar('https://localhost:44317/api/Pago',{
+      estado:this.pagarForm.value.estado
+    }).subscribe(respuesta=>{});
+    confirm('Se realizo el pago a todos correctamente!!');
+  }
 }

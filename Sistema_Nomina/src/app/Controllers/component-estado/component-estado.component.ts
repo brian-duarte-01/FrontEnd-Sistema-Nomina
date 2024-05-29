@@ -10,6 +10,7 @@ import { WebServiceEstadoService } from 'src/app/Services/ServiceEstado/web-serv
 export class ComponentEstadoComponent {
 
   public listEstado: any = [];
+  public obEstado: any = [];
   p: number = 1;
 
 
@@ -22,6 +23,7 @@ export class ComponentEstadoComponent {
   public ngOnInit():void
   {
     this.getEstado();
+    this.obtenerEstado(0);
   }
 
   public getEstado()
@@ -54,6 +56,23 @@ export class ComponentEstadoComponent {
 
    });
   }
+
+  public obtenerEstado(id:number){
+    this.serviceEstado.get('https://localhost:44317/api/Estado/'+id).subscribe(respuesta=>{
+      this.obEstado = respuesta;
+    });
+  }
+
+   editForm: FormGroup = this.fb.group({
+    status:['']
+   });
+
+   public putEstado(id:number){
+    this.serviceEstado.put('https://localhost:44317/api/Estado/',id,{
+      status: this.editForm.value.status
+    }).subscribe(()=>{});
+    confirm('Se edito correctamente!!');
+   }
 
 
 }

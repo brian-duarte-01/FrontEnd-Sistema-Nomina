@@ -10,6 +10,7 @@ import { WebServiceTipoPagoService } from 'src/app/Services/ServiceTipoPago/web-
 export class ComponentTipoPagoComponent {
 
   public listTipoPago: any = [];
+  public obTipoPago: any =[];
 
   p: number = 1;
 
@@ -21,6 +22,7 @@ export class ComponentTipoPagoComponent {
   public ngOnInit()
   {
     this.getTipoPago();
+    this.obtenerTipoPago(0);
   }
 
   public getTipoPago()
@@ -53,6 +55,23 @@ export class ComponentTipoPagoComponent {
    this.serviceTipoPago.delete('https://localhost:44317/api/TipoPago/',id).subscribe(()=>{
 
    });
+  }
+
+  public obtenerTipoPago(id:number){
+    this.serviceTipoPago.get('https://localhost:44317/api/TipoPago/'+id).subscribe(respuesta=>{
+      this.obTipoPago = respuesta;
+    });
+  }
+
+  editForm: FormGroup = this.fb.group({
+    tipo_pago: ['']
+  });
+
+  public putTipoPago(id:number){
+    this.serviceTipoPago.put('https://localhost:44317/api/TipoPago/',id,{
+      tipo_pago: this.editForm.value.tipo_pago
+    }).subscribe(()=>{});
+    confirm('Se edito correctamente!!');
   }
 
 }

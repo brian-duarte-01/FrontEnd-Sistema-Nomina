@@ -15,6 +15,7 @@ export class ComponentBono14Component {
   public buscarBono14: string ="";
   public listTipoPago: any = [];
   public listEstado: any = [];
+  public obBono14: any = [];
 
 
   p: number = 1;
@@ -31,6 +32,7 @@ export class ComponentBono14Component {
     this.getBono14();
     this.getTipoPago();
     this.getEstado(); 
+    this.obtenerBono14(0);
   }
 
   public getBono14()
@@ -86,6 +88,43 @@ export class ComponentBono14Component {
 
    });
   }
+
+  public obtenerBono14(id:number){
+    this.apiService.get('https://localhost:44317/api/Bono14/'+id).subscribe(respuesta=>{
+      this.obBono14 = respuesta;
+    });
+  }
+
+  editForm: FormGroup = this.fb.group({
+    empleado:[''],
+    meses:[''],
+    salario:[''],
+    tipo_pago:[''],
+    estado:['']
+  });
+
+  public putBono14(id:number){
+    this.apiService.put('https://localhost:44317/api/Bono14/',id,{
+      empleado: this.editForm.value.empleado,
+      meses: this.editForm.value.meses,
+      salario: this.editForm.value.salario,
+      tipo_pago: this.editForm.value.tipo_pago,
+      estado: this.editForm.value.estado
+    }).subscribe(respuesta=>{});
+    confirm('Se edito correctamente!!');
+  }
+
+  pagarForm: FormGroup = this.fb.group({
+    estado: []
+  });
+  
+  public pagarPago(){
+    this.apiService.pagar('https://localhost:44317/api/Bono14',{
+      estado:this.pagarForm.value.estado
+    }).subscribe(respuesta=>{});
+    confirm('Se realizo el pago a todos correctamente!!');
+  }
+
 
 
 }

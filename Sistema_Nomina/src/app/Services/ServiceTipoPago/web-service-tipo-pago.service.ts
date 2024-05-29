@@ -22,4 +22,12 @@ export class WebServiceTipoPagoService {
   {
     return this.http.delete(url+id);
   }
+
+  public obtener(url:string, id:number){
+    return this.http.get(url+id);
+  }
+
+  public put(url:string, id:number, body:any){
+    return this.http.put(url+id,body);
+  }
 }

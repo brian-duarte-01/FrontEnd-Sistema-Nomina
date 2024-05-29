@@ -11,6 +11,7 @@ import { WebserviceEmpresaService } from 'src/app/Services/ServiceEmpresa/webser
 export class ComponentEmpresaComponent {
 
   public listEmpresa : any = [];
+  public obEmpresa: any=[];
 
   p: number = 1;
 
@@ -22,6 +23,7 @@ export class ComponentEmpresaComponent {
   public ngOnInit()
   {
     this.getEmpresa();
+    this.obtenerEmpresa(0);
   }
 
   public getEmpresa()
@@ -66,6 +68,37 @@ export class ComponentEmpresaComponent {
    this.serviceEmpresa.delete('https://localhost:44317/api/Empresa/',id).subscribe(()=>{
 
    });
+  }
+
+  public obtenerEmpresa(id:number){
+    this.serviceEmpresa.get('https://localhost:44317/api/Empresa/'+id).subscribe(respuesta=>{
+      this.obEmpresa = respuesta;
+    });
+  }
+
+  editForm: FormGroup = this.fb.group({
+    nombre:[], 
+    calle: [],
+    avenida: [],
+    zona: [],
+    telefono: [],
+    nit: [],
+    correo: []
+  });
+
+  public put(id:number){
+    this.serviceEmpresa.put('https://localhost:44317/api/Empresa/',id,{
+      nombre:this.editForm.value.nombre, 
+    calle: this.editForm.value.calle,
+    avenida: this.editForm.value.avenida,
+    zona: this.editForm.value.zona,
+    telefono: this.editForm.value.telefono,
+    nit: this.editForm.value.nit,
+    correo: this.editForm.value.correo
+    }).subscribe(()=>{
+
+    });
+    confirm('Se edito correctamente!!');
   }
 
 

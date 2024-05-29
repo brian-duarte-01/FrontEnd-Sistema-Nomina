@@ -16,6 +16,7 @@ export class ComponentAguinaldoComponent {
   public buscarEmpeado: string ="";
   public listTipoPago: any =[];
   public listEstado: any = [];
+  public obAguinal: any =[];
 
   p: number = 1;
 
@@ -31,6 +32,7 @@ export class ComponentAguinaldoComponent {
     this.getAguinaldo();
     this.getTipoPago();
     this.getEstado();
+    this.obtenerAguinaldo(0);
   }
 
   public getAguinaldo()
@@ -84,6 +86,44 @@ export class ComponentAguinaldoComponent {
    this.apiAguinaldo.delete('https://localhost:44317/api/Aguinaldo/',id).subscribe(()=>{
 
    });
+  }
+
+
+  public obtenerAguinaldo(id:number){
+    this.apiAguinaldo.get('https://localhost:44317/api/Aguinaldo/'+id).subscribe(respuesta=>{
+      this.obAguinal = respuesta;
+    });
+  }
+
+
+  editForm: FormGroup = this.fb.group({
+    empleado:[''],
+    meses:[''],
+    salario:[''],
+    tipo_pago:[''],
+    estado:['']
+  });
+
+  public putAguinaldo(id:number){
+    this.apiAguinaldo.put('https://localhost:44317/api/Aguinaldo/',id,{
+      empleado: this.editForm.value.empleado,
+      meses: this.editForm.value.meses,
+      salario: this.editForm.value.salario,
+      tipo_pago: this.editForm.value.tipo_pago,
+      estado: this.editForm.value.estado
+    }).subscribe(()=>{});
+    confirm('Se edito correctamente!!');
+  }
+
+  pagarForm: FormGroup = this.fb.group({
+    estado: []
+  });
+  
+  public pagarPago(){
+    this.apiAguinaldo.pagar('https://localhost:44317/api/Aguinaldo',{
+      estado:this.pagarForm.value.estado
+    }).subscribe(respuesta=>{});
+    confirm('Se realizo el pago a todos correctamente!!');
   }
 
 

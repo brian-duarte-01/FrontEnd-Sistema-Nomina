@@ -15,6 +15,7 @@ export class ComponentIndemizacionComponent {
   public buscarEmpleado: string ="";
   public listTipoPago: any = [];
   public listEstado: any = [];
+  public obIndemizacion: any =[];
 
   p: number = 1;
 
@@ -30,6 +31,7 @@ export class ComponentIndemizacionComponent {
     this.getIndemizacion();
     this.getEstado();
     this.getTipoPago(); 
+    this.obtenerIndemizacion(0);
   }
 
   public getIndemizacion(){
@@ -86,6 +88,44 @@ export class ComponentIndemizacionComponent {
 
   });
  }
+
+ public obtenerIndemizacion(id:number){
+  this.serviceIndemizacion.get('https://localhost:44317/api/Indemizacion/'+id).subscribe(respuesta=>{
+    this.obIndemizacion = respuesta;
+  });
+ }
+
+  editForm: FormGroup = this.fb.group({
+  empleado: [''],
+  anos:[''],
+  meses:[''],
+  salario:[''],
+  tipo_pago:[''],
+  estado:['']
+  });
+
+ public putIndmeizacion(id:number){
+  this.serviceIndemizacion.put('https://localhost:44317/api/Indemizacion/',id,{
+    empleado: this.editForm.value.empleado,
+    anos: this.editForm.value.anos,
+    meses:this.editForm.value.meses,
+    salario:this.editForm.value.salario,
+    tipo_pago:this.editForm.value.tipo_pago,
+    estado:this.editForm.value.estado
+  }).subscribe(()=>{});
+  confirm('Se edito correctamente!!');
+ }
+
+ pagarForm: FormGroup = this.fb.group({
+  estado: []
+});
+
+public pagarPago(){
+  this.serviceIndemizacion.pagar('https://localhost:44317/api/Indemizacion',{
+    estado:this.pagarForm.value.estado
+  }).subscribe(respuesta=>{});
+  confirm('Se realizo el pago a todos correctamente!!');
+}
 
 
   

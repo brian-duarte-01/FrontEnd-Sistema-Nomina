@@ -13,6 +13,8 @@ export class ComponentEmpleadoComponent {
   public listEmpleado: any = [];
   public listEmpresa: any = [];
 
+  public obEmpleado: any = [];
+
   p: number = 1;
 
   public BuscarEmpleado: string ="";
@@ -28,6 +30,7 @@ export class ComponentEmpleadoComponent {
   {
     this.getEmpleado();
     this.getEmpresa();
+    this.ObtenerEmpleado(0);
   }
 
   public getEmpleado()
@@ -85,4 +88,42 @@ export class ComponentEmpleadoComponent {
   {
     this.webEmpleado.delete('https://localhost:44317/api/Empleado/',id).subscribe(()=>{});
   }
+
+  public ObtenerEmpleado(id:number){
+    this.webEmpleado.get('https://localhost:44317/api/Empleado/'+id).subscribe(respuesta=>{
+      this.obEmpleado = respuesta
+    });
+  }
+
+  editForm: FormGroup = this.fb.group({
+    primer_nombre:[],
+    segundo_nombre:[],
+    primer_apellido:[],
+    segundo_apellido:[],
+    nit:[],
+    calle:[],
+    avenida:[],
+    zona:[],
+    telefono:[],
+    correo:[],
+    empresa:[]
+  });
+
+  public put(id:number){
+    this.webEmpleado.put('https://localhost:44317/api/Empleado/',id,{
+      primer_nombre: this.editForm.value.primer_nombre,
+    segundo_nombre: this.editForm.value.segundo_nombre,
+    primer_apellido: this.editForm.value.primer_apellido,
+    segundo_apellido: this.editForm.value.segundo_apellido,
+    nit: this.editForm.value.nit,
+    calle: this.editForm.value.calle,
+    avenida: this.editForm.value.avenida,
+    zona: this.editForm.value.zona,
+    telefono: this.editForm.value.telefono,
+    correo: this.editForm.value.correo,
+    empresa: this.editForm.value.empresa
+    }).subscribe(()=>{});
+    confirm('Se edito correctamente!!');
+  }
+
 }
